@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using DevDaysSpeakers.ViewModel;
 using System;
+using DevDaysSpeakers.Model;
 
 namespace DevDaysSpeakers.View
 {
@@ -17,9 +18,15 @@ namespace DevDaysSpeakers.View
 			ListViewSpeakers.ItemSelected += ListViewSpeakers_ItemSelected;
 		}
 
-		void ListViewSpeakers_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+		private async void ListViewSpeakers_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
-			throw new NotImplementedException();
+			var speaker = e.SelectedItem as Speaker;
+			if (speaker == null)
+				return;
+
+			await Navigation.PushAsync(new DetailsPage(speaker));
+
+			ListViewSpeakers.SelectedItem = null;
 		}
 }
 }
