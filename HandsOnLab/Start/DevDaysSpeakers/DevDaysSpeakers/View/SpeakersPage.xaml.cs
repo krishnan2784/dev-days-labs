@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 using DevDaysSpeakers.ViewModel;
-
+using System;
 
 namespace DevDaysSpeakers.View
 {
@@ -17,6 +17,9 @@ namespace DevDaysSpeakers.View
 			ListViewSpeakers.ItemSelected += ListViewSpeakers_ItemSelected;
 		}
 
-
-	}
+		void ListViewSpeakers_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+		{
+			throw new NotImplementedException();
+		}
+}
 }
