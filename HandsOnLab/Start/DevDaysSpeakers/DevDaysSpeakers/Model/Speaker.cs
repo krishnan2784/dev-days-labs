@@ -7,5 +7,8 @@
 		public string Website { get; set; }
 		public string Title { get; set; }
 		public string Avatar { get; set; }
+
+		[Microsoft.WindowsAzure.MobileServices.Version]
+		public string AzureVersion { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using DevDaysSpeakers.Model;
+using DevDaysSpeakers.Services;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 
@@ -48,23 +49,21 @@ namespace DevDaysSpeakers.ViewModel
 				return;
 
 			Exception error = null;
+
+
 			try
 			{
 				IsBusy = true;
 
-				using (var client = new HttpClient())
-				{
-					//grab json from server
-					var json = await client.GetStringAsync("http://demo4404797.mockable.io/speakers");
+				var service = DependencyService.Get<AzureService>();
+				var items = await service.GetSpeakers();
 
-					//Deserialize json
-					var items = JsonConvert.DeserializeObject<List<Speaker>>(json);
 
 					//Load speakers into list
 					Speakers.Clear();
 					foreach (var item in items)
 						Speakers.Add(item);
-				}
+				
 			}
 			catch (Exception ex)
 			{
